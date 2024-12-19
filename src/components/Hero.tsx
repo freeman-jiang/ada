@@ -4,7 +4,7 @@ import React from "react";
 
 export function Hero() {
   return (
-    <div className="w-full rounded-md flex flex-col items-center justify-start antialiased bg-grid-white/[0.02] relative overflow-hidden font-sans min-h-screen">
+    <div className="w-full rounded-md flex flex-col items-center justify-start antialiased relative overflow-hidden min-h-screen">
       <div className="p-4 mx-auto relative z-10 w-full pt-20">
         <h1 className="text-4xl font-medium text-center tracking-tight">
           Emotions as the Secret Architects of Cinema
@@ -119,7 +119,7 @@ export function Hero() {
             </div>
 
             {/* Optional: Add connecting lines */}
-            <div className="absolute inset-0 rounded-full border border-zinc-800/50"></div>
+            <div className="absolute inset-0 rounded-full border border-zinc-800/60"></div>
           </div>
         </div>
         <Link

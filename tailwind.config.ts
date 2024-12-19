@@ -24,6 +24,7 @@ export default {
   },
   plugins: [
     tailwindcssAnimate,
+    require("@tailwindcss/typography"),
     function ({ matchUtilities, theme }: any) {
       matchUtilities(
         {
