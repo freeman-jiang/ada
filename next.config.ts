@@ -1,11 +1,13 @@
 // next.config.js
 import withMDX from "@next/mdx";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 
 const mdxConfig = withMDX({
   options: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [],
+    remarkPlugins: [remarkGfm, remarkMath],
+    rehypePlugins: [rehypeKatex],
   },
 });
 
@@ -13,9 +15,6 @@ const mdxConfig = withMDX({
 const nextConfig = {
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   reactStrictMode: true,
-  // experimental: {
-  //   mdxRs: true,
-  // },
 };
 
-module.exports = mdxConfig(nextConfig);
+export default mdxConfig(nextConfig);

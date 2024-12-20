@@ -81,7 +81,36 @@ An **ARIMA model** (AutoRegressive Integrated Moving Average) is a class of mode
 
 ARIMA(\(p, d, q\)) has three components:
 
-------- TODO: YOU GOTTA DO THIS BACK ARIMA -------
+1. **AutoRegressive (AR)** component (\(p\)):  
+   Relates the current value of the series to its past values.  
+   Formula:
+
+   $$
+   X_t = c + \phi_1 X_{t-1} + \phi_2 X_{t-2} + \dots + \phi_p X_{t-p} + \epsilon_t
+   $$
+
+   Where:
+
+   - \($X_t$\): Value at time \(t\)
+   - \($\phi_i$\): AR coefficients
+   - \($\epsilon_t$\): White noise (random error)
+
+2. **Integrated (I)** component (\(d\)):  
+   Represents the number of differencing operations needed to make the time series stationary.  
+   Differencing formula:
+
+   $$
+   X_t' = X_t - X_{t-1}
+   $$
+
+3. **Moving Average (MA)** component (\(q\)):  
+   Models the dependency between an observation and residual errors from a moving average model applied to lagged observations.  
+   Formula:
+   $$
+   X_t = c + \epsilon_t + \theta_1 \epsilon_{t-1} + \theta_2 \epsilon_{t-2} + \dots + \theta_q \epsilon_{t-q}
+   $$
+   Where:
+   - \($\theta_i$\): MA coefficients
 
 #### Forecasting 10 year into the future
 
