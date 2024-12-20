@@ -14,6 +14,8 @@ import {
   ChartContainer,
   ChartLegend,
   ChartLegendContent,
+  ChartTooltip,
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 
 const chartData = [
@@ -65,7 +67,7 @@ const chartConfig = {
 
 export function AllEmotions() {
   return (
-    <Card className="flex flex-col">
+    <Card className="flex flex-col my-4">
       <CardHeader className="items-center pb-4">
         <CardTitle className="text-2xl">
           Emotion Distribution Across All Movies
@@ -86,6 +88,7 @@ export function AllEmotions() {
                 outerRadius={140}
               />
               <ChartLegend content={<ChartLegendContent nameKey="emotion" />} />
+              <ChartTooltip content={<ChartTooltipContent />} />
             </PieChart>
           </ResponsiveContainer>
         </ChartContainer>

@@ -706,7 +706,7 @@ const chartConfig = {
 
 export function TimeLineChart() {
   return (
-    <Card>
+    <Card className="my-4">
       <CardHeader>
         <CardTitle>Emotions Over Time</CardTitle>
         <CardDescription>

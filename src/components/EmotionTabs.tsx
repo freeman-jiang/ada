@@ -127,7 +127,7 @@ export const EmotionTabs = () => {
   };
 
   return (
-    <Tabs defaultValue={EMOTIONS_W_NEUTRAL[0]} className="w-full">
+    <Tabs defaultValue={EMOTIONS_W_NEUTRAL[0]} className="w-full my-4">
       <TabsList>
         {EMOTIONS_W_NEUTRAL.map((emotion) => (
           <TabsTrigger key={emotion} value={emotion}>
@@ -136,7 +136,7 @@ export const EmotionTabs = () => {
         ))}
       </TabsList>
       {EMOTIONS_W_NEUTRAL.map((emotion) => (
-        <TabsContent key={emotion} value={emotion}>
+        <TabsContent key={emotion} value={emotion} className="py-2">
           <div className="w-full h-[32rem] relative">
             <EmotionBar
               chart={prepareData(emotion)}

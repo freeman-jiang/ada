@@ -65,7 +65,7 @@ export function PieChartCard({ data, title, description }: PieChartProps) {
   }, {} as Record<string, { label: string }>);
 
   return (
-    <Card className="flex flex-col">
+    <Card className="flex flex-col my-4">
       <CardHeader className="items-center pb-4">
         <CardTitle className="text-2xl">{title}</CardTitle>
       </CardHeader>

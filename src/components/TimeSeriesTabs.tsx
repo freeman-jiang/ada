@@ -14,7 +14,7 @@ export const TimeSeriesTabs = () => {
   return (
     <Tabs
       defaultValue={Object.keys(emotions_genres_mapping)[0]}
-      className="w-full"
+      className="w-full my-4"
     >
       <TabsList>
         {Object.keys(emotions_genres_mapping).map((emotion) => (
@@ -37,7 +37,7 @@ export const TimeSeriesTabs = () => {
               ))}
             </TabsList>
             {genres.map((genre) => (
-              <TabsContent key={genre} value={genre}>
+              <TabsContent key={genre} value={genre} className="py-2">
                 <div className="w-full aspect-video relative">
                   <Image
                     src={`/images/time_series/${emotion.toLowerCase()}_${genre.toLowerCase()}.png`}
