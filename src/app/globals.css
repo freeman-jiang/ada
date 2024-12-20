@@ -135,12 +135,6 @@ body {
   }
 }
 
-@layer components {
-  .text-secondary {
-    @apply text-zinc-400;
-  }
-}
-
 @layer base {
   * {
     @apply border-border;
