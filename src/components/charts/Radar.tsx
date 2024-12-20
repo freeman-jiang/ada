@@ -50,7 +50,7 @@ const data = {
 
 function transformEmotionData() {
   const movies = Object.keys(data);
-  // @ts-ignore
+  // @ts-expect-error data is not typed
   const emotions = Object.keys(data[movies[0]]);
 
   return emotions.map((emotion) => ({
@@ -58,7 +58,7 @@ function transformEmotionData() {
     ...Object.fromEntries(
       movies.map((movie) => [
         movie.split(" (")[0],
-        // @ts-ignore
+        // @ts-expect-error data is not typed
         parseFloat((data[movie][emotion] * 100).toFixed(1)),
       ])
     ),
