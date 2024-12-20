@@ -10,7 +10,7 @@ export const getContent = cache(async (filename: string) => {
 
 export const getJSONContent = cache(async (filename: string) => {
   const content = await getContent(filename);
-  return content;
+  return JSON.parse(content);
 });
 
 export const getAllMarkdownFiles = cache(async () => {

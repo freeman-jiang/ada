@@ -1,11 +1,13 @@
 import { Hero } from "@/components/Hero";
-import { getContent } from "@/lib/content";
+import { getContent, getJSONContent } from "@/lib/content";
 import { Markdown } from "@/components/Markdown";
 import { AllEmotions } from "@/components/charts/pie/AllEmotions";
+import { VerticalBar } from "@/components/charts/bar/VerticalBar";
 
-const content = await getContent("README.md");
+export default async function Home() {
+  const content = await getContent("README.md");
+  const actorEmotionData = await getJSONContent("actor_emotion.json");
 
-export default function Home() {
   return (
     <div className="bg-grid-white/[0.02] font-sans">
       <Hero />
@@ -13,7 +15,7 @@ export default function Home() {
       <div className="w-full flex flex-col px-4 lg:px-[25vw] items-center">
         <div className="max-w-[65ch]">
           <AllEmotions />
-
+          <VerticalBar chart={actorEmotionData} />
           <Markdown content={content} />
         </div>
       </div>
