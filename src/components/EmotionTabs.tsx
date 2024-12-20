@@ -15,7 +15,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { BarChartProps } from "@/types";
+import { BarChartProps, Chart } from "@/types";
 import { EMOTIONS_W_NEUTRAL } from "@/constants";
 
 const chartConfig = {} satisfies ChartConfig;
@@ -66,7 +66,7 @@ function EmotionBar({ chart, average, emotion }: EmotionBarProps) {
             <XAxis
               dataKey={chart.metadata.y_key}
               type="number"
-              domain={[0, "auto"]}
+              domain={[0, 32]}
             />
             <ChartTooltip
               cursor={false}
@@ -250,6 +250,7 @@ export const EmotionTabs = () => {
       "World cinema": 4110,
     },
   };
+
   const prepareData = (emotion: string): Chart => {
     const data = Object.entries(genreEmotion[emotion.toLowerCase()])
       .filter(([key]) => key !== "count")
