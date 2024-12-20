@@ -127,7 +127,7 @@ export const EmotionTabs = () => {
   };
 
   return (
-    <Tabs defaultValue={EMOTIONS_W_NEUTRAL[0]} className="w-full my-4">
+    <Tabs defaultValue={EMOTIONS_W_NEUTRAL[0]} className="w-full">
       <TabsList>
         {EMOTIONS_W_NEUTRAL.map((emotion) => (
           <TabsTrigger key={emotion} value={emotion}>

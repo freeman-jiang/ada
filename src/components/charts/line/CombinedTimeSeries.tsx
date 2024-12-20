@@ -704,7 +704,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function TimeLineChart() {
+export function CombinedTimeSeries() {
   return (
     <Card className="my-4">
       <CardHeader>
