@@ -704,7 +704,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function Component() {
+export function TimeLineChart() {
   return (
     <Card>
       <CardHeader>
