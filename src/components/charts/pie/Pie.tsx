@@ -1,6 +1,6 @@
 "use client";
 
-import { Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import { Pie, PieChart, ResponsiveContainer } from "recharts";
 
 import {
   Card,
