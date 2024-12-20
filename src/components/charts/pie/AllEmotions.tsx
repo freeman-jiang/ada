@@ -85,7 +85,7 @@ export function AllEmotions() {
                 dataKey="value"
                 nameKey="emotion"
                 label={renderCustomLabel}
-                outerRadius={140}
+                outerRadius={120}
               />
               <ChartLegend content={<ChartLegendContent nameKey="emotion" />} />
               <ChartTooltip content={<ChartTooltipContent />} />

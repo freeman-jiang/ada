@@ -706,7 +706,7 @@ const chartConfig = {
 
 export function CombinedTimeSeries() {
   return (
-    <Card className="my-4">
+    <Card className="-mx-12">
       <CardHeader>
         <CardTitle>Emotions Over Time</CardTitle>
         <CardDescription>
