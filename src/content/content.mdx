@@ -3,6 +3,7 @@ import { EmotionTabs } from "@/components/EmotionTabs";
 import { CombinedTimeSeries } from "@/components/charts/line/CombinedTimeSeries";
 import { AgeBar, GenderBar } from "@/components/charts/bar/All";
 import { LanguagePie } from "@/components/charts/pie/All";
+import { TimeSeriesTabs } from "@/components/TimeSeriesTabs";
 
 # Emotions as the Secret Architects of Cinema
 
@@ -86,9 +87,11 @@ ARIMA(\(p, d, q\)) has three components:
 
 Forecasting is achieved mathematically by iterating the ARIMA equation forward in time.
 
-// FILL Time Series
-
-Ok now we know the emotional tones in movies in the future. But what about the here and now? What impact have the emotional tones in movies on the underlying components? We will explore how emotions in movies - as secret architects - shape the attributes of these movies. Lets dive into the first act:
+<TimeSeriesTabs />
+Ok now we know the emotional tones in movies in the future. But what about the here
+and now? What impact have the emotional tones in movies on the underlying components?
+We will explore how emotions in movies - as secret architects - shape the attributes
+of these movies. Lets dive into the first act:
 
 ## How does the emotional tone of films influence the selection of actor traits, such as age and gender?
 
