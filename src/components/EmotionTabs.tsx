@@ -105,7 +105,9 @@ function EmotionBar({ chart, average, emotion }: EmotionBarProps) {
 
 export const EmotionTabs = () => {
   const prepareData = (emotion: string): Chart => {
-    const data = Object.entries(genreEmotion[emotion.toLowerCase()])
+    const data = Object.entries(
+      genreEmotion[emotion.toLowerCase() as keyof typeof genreEmotion]
+    )
       .filter(([key]) => key !== "count")
       .map(([genre, value]) => ({
         genre,
@@ -138,7 +140,11 @@ export const EmotionTabs = () => {
           <div className="w-full h-[32rem] relative">
             <EmotionBar
               chart={prepareData(emotion)}
-              average={genreEmotion.average[emotion.toLowerCase()]}
+              average={
+                genreEmotion.average[
+                  emotion.toLowerCase() as keyof typeof genreEmotion.average
+                ]
+              }
               emotion={emotion}
             />
           </div>
