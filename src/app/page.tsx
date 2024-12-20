@@ -5,6 +5,7 @@ import { AllEmotions } from "@/components/charts/pie/AllEmotions";
 import { HorizontalBar } from "@/components/charts/bar/HorizontalBar";
 import { VerticalBar } from "@/components/charts/bar/VerticalBar";
 import { PieChartCard } from "@/components/charts/pie/Pie";
+import { Component } from "@/components/charts/line/Line";
 
 export default async function Home() {
   const content = await getContent("README.md");
@@ -18,6 +19,7 @@ export default async function Home() {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-50/20 to-transparent my-20" />
       <div className="w-full flex flex-col px-4 lg:px-[25vw] items-center">
         <div className="max-w-[65ch]">
+          <Component />
           <PieChartCard
             data={languagesData}
             title="Top 15 Movie Languages"
