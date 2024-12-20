@@ -1,5 +1,5 @@
 "use client";
-import { Bar, BarChart, ReferenceLine, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, Legend, ReferenceLine, XAxis, YAxis } from "recharts";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
 import {
@@ -81,6 +81,7 @@ function EmotionBar({ chart, average, emotion }: EmotionBarProps) {
                   emotion.toLowerCase() as keyof typeof emotionColors
                 ]
               }
+              name={emotion}
             />
             <ReferenceLine
               x={average * 100}
@@ -91,7 +92,9 @@ function EmotionBar({ chart, average, emotion }: EmotionBarProps) {
                 position: "top",
                 fill: "hsl(var(--foreground))",
               }}
+              name="Average"
             />
+            <Legend />
           </BarChart>
         </ChartContainer>
       </CardContent>
