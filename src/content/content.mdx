@@ -6,7 +6,6 @@ import { LanguagePie } from "@/components/charts/pie/All";
 import { TimeSeriesTabs } from "@/components/TimeSeriesTabs";
 import { RadarPlot } from "@/components/charts/Radar";
 
-
 What makes a movie stay with you long after the credits roll? Is it the plot twists, the unforgettable characters—or something deeper, something more visceral? At the heart of every great movie is **how it makes you feel**. Joy, sadness, fear, anger, surprise, disgust—these are not only fundamental emotions to human nature, but they shape the stories we tell and how we experience them.
 
 In this datastory, we pull back the curtain to reveal how emotion drives the magic of movies. How have emotional tones in movies changed over time and across genres? Can a movie's emotions predict its cast? What role does language play? And most importantly, what emotions do audiences really want to see?
@@ -113,11 +112,14 @@ $\text{ARIMA}(p, d, q)$ has 3 components:
    Where:
    - \($\theta_i$\): MA coefficients
 
-#### Forecasting 10 years into the future
+### The Forecast Is Cloudy with a Chance of Jumpscares
 
-Forecasting is achieved mathematically by iterating the ARIMA equation forward in time.
+For each emotion, we found the genres for which it was **statistically significant**. We then used the ARIMA model to forecast the emotional tone for those genres over the next 10 years.
+
+Use the interactive charts below to explore the ARIMA's predictions per emotion.
 
 <TimeSeriesTabs />
+
 While our forecasts paint a picture of future emotional trends in cinema, let's bring
 it back to the present. How do emotional tones shape the fundamental characteristics
 of movies? We explore how emotions act as hidden architects, influencing key aspects

@@ -37,8 +37,12 @@ export const TimeSeriesTabs = () => {
               ))}
             </TabsList>
             {genres.map((genre) => (
-              <TabsContent key={genre} value={genre} className="py-2">
-                <div className="w-full aspect-video relative">
+              <TabsContent
+                key={genre}
+                value={genre}
+                className="py-2 -ml-8 -mr-12"
+              >
+                <div className="w-full aspect-[3600/1800] relative">
                   <Image
                     src={`/images/time_series/${emotion.toLowerCase()}_${genre.toLowerCase()}.png`}
                     alt={`${genre} ${emotion}`}
