@@ -1,6 +1,7 @@
 import { Hero } from "@/components/Hero";
 import { getContent } from "@/lib/content";
 import { Markdown } from "@/components/Markdown";
+import { PieGraph } from "@/components/charts/Pie";
 
 const content = await getContent("README.md");
 
@@ -12,6 +13,7 @@ export default function Home() {
       <div className="w-full flex flex-col px-4 lg:px-[25vw] items-center">
         <div className="max-w-[65ch]">
           <Markdown content={content} />
+          <PieGraph />
         </div>
       </div>
     </div>
