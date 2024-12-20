@@ -6,6 +6,7 @@ export const actorAge = {
       "Std Error": 0.22427120043496154,
       Lower: -0.4846374512218546,
       Upper: 0.3945247727019742,
+      fill: "hsl(var(--fear))",
     },
     {
       Emotion: "surprise",
@@ -13,6 +14,7 @@ export const actorAge = {
       "Std Error": 0.3766112509937583,
       Lower: -1.511853143323611,
       Upper: -0.03550493483204775,
+      fill: "hsl(var(--surprise))",
     },
     {
       Emotion: "anger",
@@ -20,6 +22,7 @@ export const actorAge = {
       "Std Error": 0.22574090405324057,
       Lower: -1.2489652760998782,
       Upper: -0.36404168870606707,
+      fill: "hsl(var(--anger))",
     },
     {
       Emotion: "disgust",
@@ -27,6 +30,7 @@ export const actorAge = {
       "Std Error": 0.24418992325935818,
       Lower: -1.76778105030314,
       Upper: -0.8105357349165832,
+      fill: "hsl(var(--disgust))",
     },
     {
       Emotion: "sadness",
@@ -34,6 +38,7 @@ export const actorAge = {
       "Std Error": 0.22781009551070322,
       Lower: -2.0166862049035936,
       Upper: -1.1236512106062704,
+      fill: "hsl(var(--sadness))",
     },
     {
       Emotion: "joy",
@@ -41,6 +46,7 @@ export const actorAge = {
       "Std Error": 0.39531752161465333,
       Lower: -2.935954960801785,
       Upper: -1.3862765768418988,
+      fill: "hsl(var(--joy))",
     },
   ],
   metadata: {
