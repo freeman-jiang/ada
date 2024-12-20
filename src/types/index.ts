@@ -6,6 +6,7 @@ export interface Chart {
     y_label: string;
     x_key: string;
     y_key: string;
+    description?: string;
   };
 }
 
