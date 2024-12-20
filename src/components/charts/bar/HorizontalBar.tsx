@@ -1,6 +1,6 @@
 "use client";
 
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import { Bar, BarChart, XAxis, YAxis } from "recharts";
 
 import {
   Card,
@@ -31,7 +31,7 @@ interface Props {
   };
 }
 
-export function VerticalBar({ chart }: Props) {
+export function HorizontalBar({ chart }: Props) {
   return (
     <Card>
       <CardHeader>
@@ -40,34 +40,35 @@ export function VerticalBar({ chart }: Props) {
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chart.data}>
-            <CartesianGrid vertical={false} />
-            <XAxis
+          <BarChart
+            accessibilityLayer
+            data={chart.data}
+            layout="vertical"
+            margin={{
+              left: 10,
+            }}
+          >
+            <YAxis
               dataKey={chart.metadata.x_key}
+              type="category"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
             />
+            <XAxis dataKey={chart.metadata.y_key} type="number" hide />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
             <Bar
               dataKey={chart.metadata.y_key}
+              layout="vertical"
               radius={6}
               fill="hsl(var(--chart-1))"
             />
           </BarChart>
         </ChartContainer>
       </CardContent>
-      {/* <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
-        </div>
-      </CardFooter> */}
     </Card>
   );
 }
