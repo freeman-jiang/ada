@@ -13,9 +13,9 @@ const mdxConfig = withMDX({
 const nextConfig = {
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   reactStrictMode: true,
-  experimental: {
-    mdxRs: true,
-  },
+  // experimental: {
+  //   mdxRs: true,
+  // },
 };
 
 module.exports = mdxConfig(nextConfig);
