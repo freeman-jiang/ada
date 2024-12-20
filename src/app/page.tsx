@@ -6,6 +6,7 @@ import { HorizontalBar } from "@/components/charts/bar/HorizontalBar";
 import { VerticalBar } from "@/components/charts/bar/VerticalBar";
 import { PieChartCard } from "@/components/charts/pie/Pie";
 import { Component } from "@/components/charts/line/Line";
+import { EmotionTabs } from "@/components/EmotionTabs";
 
 export default async function Home() {
   const content = await getContent("README.md");
@@ -20,6 +21,8 @@ export default async function Home() {
       <div className="w-full flex flex-col px-4 lg:px-[25vw] items-center">
         <div className="max-w-[65ch]">
           <Component />
+          <EmotionTabs />
+
           <PieChartCard
             data={languagesData}
             title="Top 15 Movie Languages"
