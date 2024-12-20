@@ -1,6 +1,6 @@
 "use client";
 
-import { Pie, PieChart, ResponsiveContainer, Legend } from "recharts";
+import { Pie, PieChart, ResponsiveContainer } from "recharts";
 
 import {
   Card,
@@ -9,16 +9,21 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ChartConfig, ChartContainer } from "@/components/ui/chart";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
+} from "@/components/ui/chart";
 
 const chartData = [
-  { emotion: "Neutral", value: 7386.44, fill: "hsl(var(--neutral))" },
-  { emotion: "Anger", value: 6687.6, fill: "hsl(var(--anger))" },
-  { emotion: "Disgust", value: 5987.81, fill: "hsl(var(--disgust))" },
-  { emotion: "Sadness", value: 5482.15, fill: "hsl(var(--sadness))" },
-  { emotion: "Fear", value: 5026.89, fill: "hsl(var(--chart-5))" },
-  { emotion: "Surprise", value: 1581.37, fill: "hsl(var(--surprise))" },
-  { emotion: "Joy", value: 1531.74, fill: "hsl(var(--joy))" },
+  { emotion: "neutral", value: 7386.44, fill: "hsl(var(--neutral))" },
+  { emotion: "anger", value: 6687.6, fill: "hsl(var(--anger))" },
+  { emotion: "disgust", value: 5987.81, fill: "hsl(var(--disgust))" },
+  { emotion: "sadness", value: 5482.15, fill: "hsl(var(--sadness))" },
+  { emotion: "fear", value: 5026.89, fill: "hsl(var(--chart-5))" },
+  { emotion: "surprise", value: 1581.37, fill: "hsl(var(--surprise))" },
+  { emotion: "joy", value: 1531.74, fill: "hsl(var(--joy))" },
 ];
 
 const total = chartData.reduce((sum, item) => sum + item.value, 0);
@@ -32,33 +37,47 @@ const renderCustomLabel = ({ value }: { value: number }) => {
 };
 
 const chartConfig = {
-  value: { label: "Emotion" },
+  emotion: {
+    label: "Emotion",
+  },
+  neutral: {
+    label: "Neutral",
+  },
+  anger: {
+    label: "Anger",
+  },
+  disgust: {
+    label: "Disgust",
+  },
+  sadness: {
+    label: "Sadness",
+  },
+  fear: {
+    label: "Fear",
+  },
+  surprise: {
+    label: "Surprise",
+  },
+  joy: {
+    label: "Joy",
+  },
 } satisfies ChartConfig;
 
 export function AllEmotions() {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-4">
-        <CardTitle>Emotion Distribution Across All Movies</CardTitle>
-        {/* <CardDescription>Emotional Analysis Results</CardDescription> */}
+        <CardTitle className="text-2xl">
+          Emotion Distribution Across All Movies
+        </CardTitle>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square pb-0 [&_.recharts-pie-label-text]:fill-foreground max-h-96"
+          className="mx-auto aspect-square pb-0 [&_.recharts-pie-label-text]:fill-foreground [&_.recharts-pie-label-text]:text-base [&_.recharts-legend-item-text]:text-base max-h-96"
         >
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
-              {/* <ChartTooltip
-                content={
-                  <ChartTooltipContent
-                    hideLabel
-                    // formatter={(value) => {
-                    //   return convertToPercentage(value);
-                    // }}
-                  />
-                }
-              /> */}
               <Pie
                 data={chartData}
                 dataKey="value"
@@ -66,14 +85,15 @@ export function AllEmotions() {
                 label={renderCustomLabel}
                 outerRadius={140}
               />
-              <Legend />
+              <ChartLegend content={<ChartLegendContent nameKey="emotion" />} />
             </PieChart>
           </ResponsiveContainer>
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm mt-4">
         <div className="leading-none text-muted-foreground">
-          Distribution of emotional scores across all analyzed content
+          Distribution of emotional scores across all movie plots in the CMU
+          dataset.
         </div>
       </CardFooter>
     </Card>
