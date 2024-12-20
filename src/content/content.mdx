@@ -30,7 +30,9 @@ Let's start with an example to see how this model works. We will look at the emo
 
 <RadarPlot />
 
-We can see that each movie has a unique emotional profile. _Titanic_ is a mix of joy and sadness, _Die Hard_ peaks hardest in anger and _Saw_ features disgust.
+We can see that each movie has a unique emotional profile. _Titanic_ is a mix of joy and sadness, _Die Hard_ peaks hardest in anger and _Saw_ features disgust. The appearance of a neutral emotion might seem weird but makes sense if you consider that the emotional profiles are being extracted from **plot summaries**.
+
+Then neutral represents the case where a movie is just summarizing plot information and does not effectuate a real emotion of any kind. We can treat it like a comparison baseline for all the other emotions.
 
 Now let's zoom out and see how the emotions are distributed across all movies.
 
@@ -152,11 +154,11 @@ All coefficients except fear are significant predictors! So we can see that in g
 
 Movies with high disgust scores often might involve protagonists that are teenagers or young adults. Seeing grandpa in a horror movie might be a bit odd.
 
-But these results could also be confounded by another variable: the proportion of female and male actors in movies. Are there just more female actors in joyfull movies which then tend to be younger? Our analysis covers this as well, we encoded male actors with zero and female actors with one to calculate the average gender for a movie. So higher values represent a higher proportion of female actors while lower values represent a higher proportion of male actors.
+But these results could also be confounded by another variable: **the proportion of female and male actors in movies**. Are there just more female actors in joyful movies which then tend to be younger? Our analysis covers this as well. We encoded male actors with _zero_ and female actors with _one_ to calculate the average gender for a movie. So **higher values represent a higher proportion of female actors** while lower values represent a higher proportion of male actors.
 
 <GenderBar />
 
-Wow, emotions - except anger - seem to increase the proportion of female actors! Again we first have to check the significance of our predictors before jumping to conclusions:
+Almost all emotions except anger seem to increase the proportion of female actors! Again we first have to check the significance of our predictors before jumping to conclusions:
 
 | Emotion  | Coefficient | Std. Error | P-Value    | Impact Direction |
 | -------- | ----------- | ---------- | ---------- | ---------------- |
@@ -167,25 +169,27 @@ Wow, emotions - except anger - seem to increase the proportion of female actors!
 | Surprise | 0.0828      | 0.012      | {'<'}0.001 | Positive         |
 | Joy      | 0.1244      | 0.013      | {'<'}0.001 | Positive         |
 
-Perfect all emotions are significant predictors! We can see that stronger emotions tend to increase the proportion of female actors in movies. This trend is the strongest for joy and sadness which corresponds with our age analysis: Joy and sadness increase the proportion of female actors in movies and decrease the average age, indicating that female actors tend to be younger than male actors. But there is one exception: Anger 😡. It seems that in movies where anger is a strong emotion the proportion of female actors decreases. So female actors should think twice if they want to put the effort into a casting for a movie where anger is a dominant emotion. On the other hand directors should ask themselves why they are casting like this and if male actors are actually better suited for such movies or if this is a cliché to overcome.
+Perfect all emotions are significant predictors! We can see that stronger emotions tend to increase the proportion of female actors in movies. This trend is the strongest for joy and sadness which corresponds with our age analysis: Joy and sadness increase the proportion of female actors in movies and decrease the average age, indicating that female actors tend to be younger than male actors.
 
-Great, we gained knowledge on the role of emotions on the cast for a movie. We have seen that stronger emotions in general tend to decrease the average age of actors and increase the proportion of female actors indicating that a balanced, younger cast can create stronger emotions. The outlier in the anger emotion shows that there are maybe still some clichés to overcome or that male dominant movies just overall tend to have more anger in them. After having a detailed look at the actor level we will go one level above and look at the languages in our data. Lets jump into the final act of our regression play:
+The exception is **anger** 😡. Movies with high anger scores show a decreased proportion of female actors. This could reflect either casting biases in action/conflict-heavy films, or that male-dominated movies tend to feature more anger-driven narratives. Either way, it raises questions about gender representation in emotionally intense films.
+
+We have seen that stronger emotions in general tend to decrease the average age of actors and increase the proportion of female actors indicating that a balanced, younger cast can create stronger emotions. The outlier in the anger emotion shows that there are maybe still some clichés to overcome or that male dominant movies just overall tend to have more anger in them. After having a detailed look at the actor level we will go one level above and look at the languages in our data. Let's jump into the final act of our regression play.
 
 ## Does the emotional tone of films differ between movies in different languages?
 
-To explore this question we will first have a look at the top 15 languages in our data:
+To explore this question we will first have a look at the **top 15 languages** in our data.
 
 <LanguagePie />
 
-Wow, we really have a variety of languages in our data! Even though we only looked at the top 15 we can see there are a lot more languages, summed up in other. We also can see that English is by far the most used language.
+What a variety of languages in our data! Even though we only looked at the top 15 we can see there are a lot more languages, summed up in `Other`. We also can see that English is by far the most used language.
 
-We want to see how emotions vary across languages, so how different languages and associated with them cultures, influence the emotional tone in movies. Again the star in our play is an OLS regression analysis. We need again a variable to compare against. Because English is kind of the normative in the movie industry and by far the most used language in our movies we will used it for comparison. Therefore we analyze how languages that have an significant impact on the emotional tone of a movie influence it compared to English language:
+We want to see how emotions vary across languages, so how different languages and associated with them cultures, influence the emotional tone in movies. Again the star of our play is an OLS regression analysis. We need again a variable to compare against. Because English is kind of the normative in the movie industry and by far the most used language in our movies we will used it for comparison. Therefore we analyze how languages that have an significant impact on the emotional tone of a movie influence it compared to English language:
 
 ![emotion_language_effect_plot](https://hackmd.io/_uploads/Bkoy6kQrkg.png)
 
-Ok we got results! First of all we can see that language alone does not explain the emotional tone of a movie as indicated by the very low $R^2$-values. But still we see some interesting trends. First of all for fear, joy, neutral and sadness, all significant languages have the same effect direction, indicating that movies in English language differ from most other languages. We see that fear is less dominant in non english films, while sadness is more dominant. It seems that movies in English language are less sad but more frightening than most movies in other languages. In addition we can see some strong differences for some specific languages; The Urdu language for example seem to have more sad movies than the English language or the Telugu language movies with more anger in them compared to English movies.
+Language alone explains little of a movie's emotional tone, as shown by the extremely low $R^2$-values. However, some clear patterns emerge. For fear, joy, neutral and sadness, all significant languages show consistent effects compared to English. Non-English films tend to have less fear but more sadness, suggesting English-language movies are generally more frightening but less sad. Some languages show particularly strong differences—Urdu films are notably sadder than English ones, while Telugu films contain more anger.
 
-Ok so we have learned so far what the predominant emotions in films are and how they vary across genres, how they evolved over time and how they influence the cast of a movie and are influenced by different languages. But the heart and soul of cinema is something else: The audience. Movies are made for people, they move us, inspire us and contribute to discussions in society. Thats why emotions are so important in movies - they are supposed to make us cry, frighten us or make us laugh. So we want to see which emotions does the audience want to see? Are there certain patterns or combinations of different emotions that influence the critics of a movie?
+However ultimately, movies are made for people, they move us, inspire us and contribute to discussions in society. Thats why emotions are so important in movies—they are supposed to make us cry, frighten us or make us laugh. So we want to see which emotions does the audience want to see? Are there certain patterns or combinations of different emotions that influence the critics of a movie?
 
 For this thriller we first need some additional data. We use the **MovieLens dataset** <a href="#references">[3]</a> to obtain 32 million ratings for 87.585 movies by 200.948 users. We merge this data with our existing data based on title and year to set the stage for our last dance:
 
@@ -199,7 +203,7 @@ We notice that emotions run the scale. Some films lean heavily into one emotion 
 
 ### The Classic Clustering Approach
 
-We begin with a time-honored technique: k-means clustering. Using a straightforward distance metric (cosine similarity to align to our data) to group films by their emotional tone, we find that the algorithm sorts them into neat clusters, where the optimal number of clusters matches the number of emotions and therefore, each is dominated by single emotions. One cluster might be primarily "joy" films, another "fear," another "anger," and so on.
+We begin with a time-honored technique**: k-means clustering**. Using a straightforward distance metric (cosine similarity to align to our data) to group films by their emotional tone, we find that the algorithm sorts them into neat clusters, where the optimal number of clusters matches the number of emotions and therefore, each is dominated by single emotions. One cluster might be primarily "joy" films, another "fear," another "anger," and so on.
 
 ![emotions_density_plot](https://hackmd.io/_uploads/rkTygImrkg.png)
 
@@ -209,7 +213,7 @@ At first glance, this seems like the ideal setup. We can identify which single-e
 
 We know that our emotional data has a special structure: all emotion values sum to one, placing every movie’s emotional signature on a simplex—think of it like points scattered across the surface of a triangular landscape. Classic clustering methods struggle to follow the subtle curves and folds of this shape.
 
-Enter DBSCAN, a clustering algorithm that excels at finding irregularly shaped groups without forcing them into spherical molds. DBSCAN scans through our emotional galaxy and discovers clusters of movies that share not just one dominant emotion, but combination of emotions like a dash of surprise mixed with a hint of sadness.
+Enter **DBSCAN**, a clustering algorithm that excels at finding irregularly shaped groups without forcing them into spherical molds. DBSCAN scans through our emotional galaxy and discovers clusters of movies that share not just one dominant emotion, but combination of emotions like a dash of surprise mixed with a hint of sadness.
 These clusters are more fine-grained and carry secrets that the straightforward k-means approach missed. Now we can pinpoint clusters that differ significantly from the global average rating.
 
 ### Revealing Patterns: Winners and Losers in the Emotional Landscape
