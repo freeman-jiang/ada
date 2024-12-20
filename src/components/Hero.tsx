@@ -130,19 +130,19 @@ export function Hero() {
           {"Paul Ekman's 6 Basic Emotions"}
         </Link>
 
-        <p className="mt-12 w-full text-center text-zinc-500">
-          Made by Team PHPJJ
+        <p className="mt-12 w-full text-center text-zinc-600">
+          Made by Team PHPJJ1
         </p>
-        <div className="flex items-center justify-center gap-2 text-sm text-zinc-500">
-          <span>asdf</span>
+        <div className="flex items-center justify-center gap-2 text-sm text-zinc-600">
+          <span>Freeman Jiang</span>
           <span>•</span>
-          <span>asdf</span>
+          <span>Levin Hertrich</span>
           <span>•</span>
-          <span>asdf</span>
+          <span>Filippo Passerini</span>
           <span>•</span>
-          <span>asdf</span>
+          <span>Sean Park</span>
           <span>•</span>
-          <span>asdf</span>
+          <span>Julian Jülg</span>
         </div>
       </div>
     </div>
