@@ -5,7 +5,7 @@ export const Markdown = ({ content }: { content: string }) => {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
-      className="prose prose-invert prose-zinc prose-headings:font-semibold"
+      className="prose prose-invert prose-zinc prose-headings:font-semibold max-w-none"
     >
       {content}
     </ReactMarkdown>
