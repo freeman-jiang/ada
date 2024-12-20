@@ -7,81 +7,72 @@ import { TimeSeriesTabs } from "@/components/TimeSeriesTabs";
 
 # Emotions as the Secret Architects of Cinema
 
-What makes a movie stay with you long after the credits roll? Is it the plot twists, the unforgettable characters, or something deeper - something more visceral? At the heart of every great movie is an emotional blueprint: joy, sadness, fear, anger, surprise, disgust, and even moments of calm neutrality. These emotions shape the stories we tell and how we experience them.
+What makes a movie stay with you long after the credits roll? Is it the plot twists, the unforgettable characters—or something deeper, something more visceral? At the heart of every great movie is an emotional blueprint: joy, sadness, fear, anger, surprise, disgust, masterfully melded into the plot the movie. Not only are these emotions fundamental to human nature, but they shape the stories we tell and how we experience them.
 
-In this datastory, we pull back the curtain to reveal how emotions drive the magic of movies. Why do comedies make us smile while horror films send shivers down our spines? How have these emotional tones changed over time and across genres? Can a movie's emotions predict its cast, its language, or even its box office?
+In this datastory, we pull back the curtain to reveal how emotion drives the magic of movies. How have emotional tones in movies changed over time and across genres? Can a movie's emotions predict its cast? What role does language play? And most importantly, what emotions do audiences really want to see?
 
 ## The Heart of Our Story: The Data Behind the Emotions
 
 Before we begin our journey, we need a foundation to build on. Therefore, we will use the **CMU Movie Summary Corpus** [1]. We have
-**Movie metadata:**
+| Dataset | Count | Description |
+| --- | --- | --- |
+| Movie Metadata | **81,741 movies** | Details such as name, languages, and genre |
+| Character Metadata | **450,669 characters** | Information such as age, name, and gender mapped to their respective movies |
+| Plot Summaries | **42,306 movies** | Extracted from Wikipedia |
 
-- 81,741 movies
-  Details such as name, languages, and genre.
+Emotions can be complex and difficult to define, so we will focus on [Ekman's Six Core Emotions](https://www.paulekman.com): joy, sadness, anger, fear, surprise, and disgust, along with a neutral emotion for balance. To identify these emotions in our movie data, we performed natural language processing with the pre-trained model `j-hartmann/emotion-english-distilroberta-base` <a href="#references">[2]</a>. The model outputs a probability distribution over the emotions, where the probabilities sum to one. Each emotion is assigned a value between 0 and 1, representing the intensity of that particular emotion in the movie plot summary.
 
-**Character metadata:**
-
-- 450,669 characters
-  Information such as age, name, and gender mapped to their respective movies.
-
-**Plot Summaries**
-
-- 42,306 movies
-  Extracted from Wikipedia.
-
-Emotions can be complex and difficult to define, so we will focus on [Ekman's six core emotions] (https://www.paulekman.com) - joy, sadness, anger, fear, surprise, and disgust - along with a neutral emotion for balance (it was originally 6 emotions, updated by Ekman himself to include contempt, but we will focus on the original 6 basic emotions and the neutral class). To identify these emotions in our movie data, we performed natural language processing with the pre-trained `j-hartmann/emotion-english-distilroberta-base` model [2]. The model outputs a probability distribution over the emotions, where the probabilities sum to one. Each emotion is assigned a value between 0 and 1, representing the intensity of that particular emotion in the movie plot summary.
-
-Now that we have the main actors of our story - the emotions - we can see what role each of them plays:
+Now that we have the main actors of our story—emotions—we can see what role each of them plays.
 
 <AllEmotions />
 
-We can see that the emotions are not evenly distributed in our data: neutral, anger, and disgust are more dominant, while surprise and joy are less common. Nevertheless, all emotions are significantly represented, so lets start our journey into the emotional landscapes of cinema.
-
-We have seen that not all of our stars get the same attention in our movies. But this could also be due to an imbalance in the genres and the emotions used in them. So the question is
+We can see that the emotions are **not evenly distributed** in our data: _neutral_, _anger_, and _disgust_ are more dominant, while _surprise_ and _joy_ are less common. This uneven distribution could also be explained by an imbalance in the genres and the emotions used in them. Nevertheless, all emotions are significantly represented, so lets start our journey into the emotional landscapes of cinema.
 
 ## What are the predominant emotional tones used in films and how do they vary across different movie genres?
 
-Our data contains hundreds of very fine-grained genres, making it difficult to perform a meaningful analysis. Therefore, we decided to use only genres with more than 2000 corresponding films. Different genres are associated with different emotions: Horror movies are disgusting and comedy movies spark joy. But is this really the case? Lets have a look:
+Our data contains hundreds of very fine-grained genres, making it difficult to perform a meaningful analysis. Therefore, we decided to use only genres with 2000 corresponding films. Different genres are seem intuitively associated with different emotions: Horror movies are disgusting and comedy movies spark joy. But is this really the case? Let's have a look.
 
 ![heatmap_with_transparent_bg](https://hackmd.io/_uploads/B1g-hGfryg.png)
 
-Interesting, we can see that certain genres have overall stronger emotions than others. Some values are expected such as the high value of fear in Horror or the high value of anger in Action but others are surprising, for example the relatively high value of anger in Family Film. The imbalance between emotions we saw earlier is displayed as well where surprise and joy have very low values across all genres. This is surprising, especially in genres like Family Film or Comedy but also shows that these emotions seem not to be as strong as for example anger which has high values across all genres.
+We can see that certain genres have overall stronger emotions than others. Some values are expected, such as the high value of fear in horror or the high value of anger in action but others are surprising. For example the relatively high value of anger in family films. The imbalance between emotions we saw earlier is displayed as well where surprise and joy have very low values across all genres. This is surprising, especially in genres like Family Film or Comedy but also shows that these emotions seem not to be as strong as for example anger which has high values across all genres.
 
 ### Emotions and Statistics: Building the Framework of Film Genres
 
-If emotions are the architects of cinema, statistics is the ruler ensuring precision and balance in their construction. To determine the emotional blueprint of each genre, we calculated the average emotional tone across our genres and added the average emotion score as a horizontal line for better comparison.
+If emotions are the architects of cinema, statistics is the ruler ensuring precision and balance in their construction. To determine the emotional blueprint of each genre, we calculated the **average emotional tone across genres** and added the average emotion score as a horizontal line for better comparison.
 
 <EmotionTabs />
 
-Nice, so we can see in more detail which role the emotions play across the genres.
-But as we have seen before, we have an imbalance in our emotions across all movies.
-we employed t-tests to isolate emotions significantly above the global average for
-each genre. This approach revealed the standout emotions defining genres like comedy,
-drama, action, and horror. Let's look for example at disgust and anger:
+So we can see in more detail which role the emotions play across the genres. But as we have seen before, we have an imbalance in our emotions across all movies. We employed t-tests to isolate emotions **significantly above the global average** for each genre. This approach revealed the standout emotions defining genres like comedy, drama, action, and horror.
 
-![horror_comedy_significant_emotions](https://hackmd.io/_uploads/H1pyFV7ryl.png)
+![significant_emotions_per_genre](https://hackmd.io/_uploads/Sk9vLHXSJe.png)
 
 We can see that depending on the genre, different emotions are significantly above average. This emphasizes once more that the impact and role of emotions in a movie highly depends on the genre of that movie.
 
-We have seen that the intensity of different emotions varies across genres which is probably not breaking news. But it is in the nature of emotions to change fluently all the time. There may be good times there may be bad times. Cinema is a mirror of society displaying the predominant emotions that are moving people. So
+While the relationship between genres and emotions may seem intuitive, emotions aren't static—they ebb and flow with time. Cinema acts as a mirror to society, reflecting the emotional state of different eras. Let's explore how these emotional patterns have evolved over the decades.
 
 ## How has the emotional tone of films evolved over time within each genre?
 
 ### Emotions across time and space
 
-To explore how these emotions have evolved, we conducted time series analyses for each prominent emotion within the selected genres. Patterns emerged, showing the rise and fall of emotional tones across decades. For instance, fear in horror films has steadily increased, while joy in comedies experienced notable peaks during certain cultural eras.
+To explore how these emotions have evolved, we conducted time series analyses for each prominent emotion within the selected genres. Patterns emerged, showing the rise and fall of emotional tones across time. For instance, fear in horror films has steadily increased, while joy in comedies experienced notable peaks during certain cultural eras.
 
 <CombinedTimeSeries />
 
 ### Back to the Future: Time Series of Emotions
 
-Finally, we applied ARIMA models to forecast emotional trends over the next ten years. These projections offer insights into the future trajectory of storytelling: will action movies become darker? Will dramas continue to balance sadness with hope? Only time will tell, but our models provide a glimpse into cinema’s emotional future.
+Finally, we applied [ARIMA](https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average) models to forecast emotional trends over the next ten years. These projections offer insights into the future trajectory of storytelling: will action movies become darker? Will dramas continue to balance sadness with hope? Only time will tell, but our models provide a glimpse into cinema's emotional future.
 
-An **ARIMA model** (AutoRegressive Integrated Moving Average) is a class of models that explains a time series based on its own past values, past forecast errors, and a differencing term to achieve stationarity.
+ARIMA (Autoregressive Integrated Moving Average) models help us predict future values by looking at patterns in historical data. They work by
 
-ARIMA(\(p, d, q\)) has three components:
+1. Looking at how past values influence current values
+2. Accounting for overall trends by removing them
+3. Learning from past prediction mistakes to make better future predictions
 
-1. **AutoRegressive (AR)** component (\(p\)):  
+Think of it like predicting tomorrow's weather - you look at recent weather patterns, account for the season, and adjust based on how accurate your previous forecasts were.
+
+$\text{ARIMA}(p, d, q)$ has 3 components:
+
+1. **AutoRegressive (AR)**: $p$  
    Relates the current value of the series to its past values.  
    Formula:
 
@@ -95,15 +86,16 @@ ARIMA(\(p, d, q\)) has three components:
    - \($\phi_i$\): AR coefficients
    - \($\epsilon_t$\): White noise (random error)
 
-2. **Integrated (I)** component (\(d\)):  
-   Represents the number of differencing operations needed to make the time series stationary.  
-   Differencing formula:
+2. **Integrated (I)**: $d$  
+   Represents the number of differencing operations needed to make the time series stationary.
+
+   Differencing Formula:
 
    $$
    X_t' = X_t - X_{t-1}
    $$
 
-3. **Moving Average (MA)** component (\(q\)):  
+3. **Moving Average (MA)**: $q$  
    Models the dependency between an observation and residual errors from a moving average model applied to lagged observations.  
    Formula:
    $$
@@ -112,19 +104,19 @@ ARIMA(\(p, d, q\)) has three components:
    Where:
    - \($\theta_i$\): MA coefficients
 
-#### Forecasting 10 year into the future
+#### Forecasting 10 years into the future
 
 Forecasting is achieved mathematically by iterating the ARIMA equation forward in time.
 
 <TimeSeriesTabs />
-Ok now we know the emotional tones in movies in the future. But what about the here
-and now? What impact have the emotional tones in movies on the underlying components?
-We will explore how emotions in movies - as secret architects - shape the attributes
-of these movies. Lets dive into the first act:
+While our forecasts paint a picture of future emotional trends in cinema, let's bring
+it back to the present. How do emotional tones shape the fundamental characteristics
+of movies? We explore how emotions act as hidden architects, influencing key aspects
+of film production.
 
 ## How does the emotional tone of films influence the selection of actor traits, such as age and gender?
 
-To find an answer to this question we will use the all-time classic of statistics: Linear regression with Ordinary Least Squares. We want to explore how different emotions influence attributes of the cast of a movie: What is the average age of the involved actors? Is there a difference in the proportion of male and female actors across the emotions? To obtain a meaningful analysis we have to be careful! The emotion scores add up to one so there is severe multicoliniarity. Therefore we will drop the neutral emotion because it is the least interesting one for this analysis. Therefore our regression results present the impact of an increase of the emotional tones relative to the neutral emotion, which is exactly what we are searching for.
+To find an answer to this question we will use the all-time classic of statistics. **Linear Regression with Ordinary Least Squares**. We want to explore how different emotions influence attributes of the cast of a movie: What is the average age of the involved actors? Is there a difference in the proportion of male and female actors across the emotions? To obtain a meaningful analysis we have to be careful! The emotion scores add up to one so there is severe multicoliniarity. Therefore we will drop the neutral emotion because it is the least interesting one for this analysis. Therefore our regression results present the impact of an increase of the emotional tones relative to the neutral emotion, which is exactly what we are searching for.
 
 First let's look at the average age across the movies. Can Harison Ford still play the main role in an action movie? Could a Grandpa also play the main role in Home alone? We will find out.
 
@@ -237,7 +229,7 @@ In other words, it’s not just the emotion itself, but how it’s paired. A del
 
 Can films be clustered based on their emotional tone, and do these clusters reveal distinct patterns in consumer ratings? The answer is both yes and no. While our initial k-means approach indicated that no single emotion stood out as consistently leading to higher or lower ratings, more nuanced clusters discovered using DBSCAN offered deeper insights. These finer-grained clusters showed that certain specific combinations of emotions—though represented by only a small portion of the entire dataset—can indeed correlate with significantly higher or lower ratings than the average. However, these findings should be interpreted with caution since the number of movies in each such cluster is limited, and the results are sensitive to the clustering configuration used. In other words, we’ve uncovered intriguing patterns, but the subtlety and sparsity of the data remind us to treat these conclusions carefully.
 
-### References
+### <p id="references">References</p>
 
 [1] Learning Latent Personas of Film Characters, David Bamman, Brendan O'Connor, and Noah A. Smith, ACL 2013, Sofia, Bulgaria, August 2013
 
