@@ -7,6 +7,7 @@ import { TimeSeriesTabs } from "@/components/TimeSeriesTabs";
 import { RadarPlot } from "@/components/charts/Radar";
 
 # The curtain opens...
+
 What makes a movie stay with you long after the credits roll? Is it the plot twists, the unforgettable characters—or something deeper, something more visceral? At the heart of every great movie is **how it makes you feel**. Joy, sadness, fear, anger, surprise, disgust—these are not only fundamental emotions to human nature, but they shape the stories we tell and how we experience them.
 
 In this datastory, we pull back the curtain to reveal how emotion drives the magic of movies. How have emotional tones in movies changed over time and across genres? Can a movie's emotions predict its cast? What role does language play? And most importantly, what emotions do audiences really want to see?
@@ -132,11 +133,11 @@ To find an answer to this question we will use the all-time classic of statistic
 
 What is the average age of the involved actors? Is there a difference in the proportion of male and female actors across the emotions? To obtain a meaningful analysis we have to be careful! The emotion scores add up to one so there is **severe multicoliniarity**. Therefore we will drop the neutral emotion because it is the least interesting one for this analysis. Therefore our regression results present the impact of an increase of the emotional tones relative to the neutral emotion, which is exactly what we are searching for.
 
-First let's look at the average age across the movies. Can Harison Ford still play the main role in an action movie? Could a grandpa also play the main role in Home Alone? We will find out.
+First let's look at the average age across the movies.
 
 <AgeBar />
 
-Interesting, _all_ coefficient are negative! We have to be careful by interpreting these results because we have to be sure that they are significant. Thankfully this is included in our regression analysis.
+Interesting, **_all_** coefficient are negative! We have to be careful by interpreting these results because we have to be sure that they are significant. Thankfully this is included in our regression analysis.
 
 | Emotion  | Coefficient | Std. Error | P-Value    | Impact Direction |
 | -------- | ----------- | ---------- | ---------- | ---------------- |
@@ -147,9 +148,11 @@ Interesting, _all_ coefficient are negative! We have to be careful by interpreti
 | Surprise | -0.7737     | 0.377      | 0.040      | Negative         |
 | Joy      | -2.1611     | 0.395      | {'<'}0.001 | Negative         |
 
-All coefficients except fear are significant predictors! So we can see that in general more emotional movies on average include younger actors. This is especially significant for movies where sadness, joy and disgust are dominant. This makes sense, as in movies where joy and sadness are dominant emotions often Kids are involved which decreases the average age of the cast. Disgust is a surprise because as seen above it is strongest in genres like Horror or Crime Fiction where one might expect older actors. This is good to know, if we want to create a movie where disgust plays a dominant role we should - against intuition - involve younger actors as well!
+All coefficients except fear are significant predictors! So we can see that in general, **movies with more emotion include younger actors**. This is especially significant for movies where sadness, joy and disgust are dominant. This makes sense, as in movies where joy and sadness are dominant emotions often kids are involved which decreases the average age of the cast.
 
-But these results could also be confounded by another variable: The proportion of female and male actors in movies. Are there just more female actors in joyfull movies which then tend to be younger? Our analysis covers this as well, we encoded male actors with zero and female actors with one to calculate the average gender for a movie. So higher values represent a higher proportion of female actors while lower values represent a higher proportion of male actors.
+Movies with high disgust scores often might involve protagonists that are teenagers or young adults. Seeing grandpa in a horror movie might be a bit odd.
+
+But these results could also be confounded by another variable: the proportion of female and male actors in movies. Are there just more female actors in joyfull movies which then tend to be younger? Our analysis covers this as well, we encoded male actors with zero and female actors with one to calculate the average gender for a movie. So higher values represent a higher proportion of female actors while lower values represent a higher proportion of male actors.
 
 <GenderBar />
 
