@@ -31,33 +31,28 @@ Our data contains hundreds of very fine-grained genres which makes it hard to do
 
 Interesting, we can see that certain genre have overall stronger emotions than others. Some values are expected such as the high value of fear in Horror or the high value of anger in Action but others are surprising for example the relatively high value of anger in Family Film. The imbalance between emotions we saw earlier is displayed as well where surprise and joy have very low values across all genres. This is surprising, especially in genres like Family Film or Comedy but also shows that these emotions seem not to be as strong as for example anger which has high values across all genres.
 
-So we saw that the intensity of different emotions varies across genres which is not breaking news. But it is in the nature of emotions to change fluently all the time. There may be good times there may be bad times. In some cultures it is rude to show sadness in others to show joy. So
+### Emotions and Statistics: Building the Framework of Film Genres
 
-## Emotions and Statistics: Building the Framework of Film Genres
+If emotions are the architects of cinema, statistics is the ruler ensuring precision and balance in their construction. To determine the emotional blueprint of each genre, we calculated the average emotional tone.
 
-If emotions are the architects of cinema, statistics is the ruler ensuring precision and balance in their construction. Our analysis dives deep into the emotional foundation of movies, answering the question: What are the predominant tones used in films, and how do they vary across the most popular genres?
+![side_by_side_emotion_plots](https://hackmd.io/_uploads/BkU7xWXrkg.png)
 
-### Identifing Popular Genres
+Recognizing the potential for imbalances, we employed t-tests to isolate emotions significantly above the global average for each genre. This approach revealed the standout emotions defining genres like comedy, drama, action, and horror. Let's look for example at disgust and anger:
+![horror_comedy_significant_emotions](https://hackmd.io/_uploads/r1DZG-Xr1l.png)
 
-We began by identifying the most popular genres based on the number of movies produced. Narrowing our scope to genres with over 2,000 movies ensured statistical robustness. These genres provide a rich tapestry of storytelling, each weaving its unique emotional signature.
+We can see that
 
-### Emotional Profiles by Genre
+We can see that the intensity of different emotions varies across genres which is probably not breaking news. But it is in the nature of emotions to change fluently all the time. There may be good times there may be bad times. Cinema is a mirror of society displaying the predominant emotions that are moving people. So
 
-To determine the emotional blueprint of each genre, we calculated the average emotional tone. Recognizing the potential for imbalances, we employed t-tests to isolate emotions significantly above the global average for each genre. This approach revealed the standout emotions defining genres like comedy, drama, action, and horror.
+## How has the emotional tone of films evolved over time within each genre?
 
-![disgust_scores](https://hackmd.io/_uploads/SJSDxLMryx.png)
-![anger_scores](https://hackmd.io/_uploads/HJKdxIzHkx.png)
-
-![Horror_significant_emotions](https://hackmd.io/_uploads/S1H9lLzBkl.png)
-![Comedy_significant_emotions](https://hackmd.io/_uploads/S1o5l8fSyl.png)
-
-### Evolution of Emotions Over Time
+### Emotions across time and space
 
 To explore how these emotions have evolved, we conducted time series analyses for each prominent emotion within the selected genres. Patterns emerged, showing the rise and fall of emotional tones across decades. For instance, fear in horror films has steadily increased, while joy in comedies experienced notable peaks during certain cultural eras.
 
 ![emotions_over_years](https://hackmd.io/_uploads/ry7U-8zHyx.png)
 
-### Forecasting the Future with ARIMA
+### Back to the Future: Time Series of Emotions
 
 Finally, we applied ARIMA models to forecast emotional trends over the next ten years. These projections offer insights into the future trajectory of storytelling: will action movies become darker? Will dramas continue to balance sadness with hope? Only time will tell, but our models provide a glimpse into cinema’s emotional future.
 
@@ -67,21 +62,11 @@ Finally, we applied ARIMA models to forecast emotional trends over the next ten 
 ![Romance Films_joy_acf_pacf](https://hackmd.io/_uploads/B147BIMHyg.png)
 ![Romance Films_sadness_acf_pacf](https://hackmd.io/_uploads/BkkNBUzHJe.png)
 
-## How has the emotional tone of films evolved over time within each genre?
-
-### Emotions across time and space
-
-//First two plots from results
-
-### Back to the Future: Time Series of Emotions
-
-// Two or three plots for time series
-
 Ok now we know the emotional tones in movies in the future. But what about the here and now? What impact have the emotional tones in movies on the underlying components? We will explore how emotions in movies - as secret architects - shape the attributes of these movies. Lets dive into the first act:
 
 ## How does the emotional tone of films influence the selection of actor traits, such as age and gender?
 
-To find an answer to this question we will use the all-time classic of statistics: Linear regression with Ordinary Least Squares. We want to explore how different emotions influence attributes of the cast of a movie: What is the average age of the involved actors? Is there a difference in the proportion of male and female actors across the emotions? To obtain a meaningful analysis we have to be careful! The emotion scores add up to one so there is severe multicolinarity. Therefore we will drop the neutral emotion because it is the least interesting one for this analysis. Therefore our regression results present the impact of an increase of the emotional tones relative to the neutral emotion, which is exactly what we are searching for.
+To find an answer to this question we will use the all-time classic of statistics: Linear regression with Ordinary Least Squares. We want to explore how different emotions influence attributes of the cast of a movie: What is the average age of the involved actors? Is there a difference in the proportion of male and female actors across the emotions? To obtain a meaningful analysis we have to be careful! The emotion scores add up to one so there is severe multicoliniarity. Therefore we will drop the neutral emotion because it is the least interesting one for this analysis. Therefore our regression results present the impact of an increase of the emotional tones relative to the neutral emotion, which is exactly what we are searching for.
 
 First let's look at the average age across the movies. Can Harison Ford still play the main role in an action movie? Could a Grandpa also play the main role in Home alone? We will find out.
 
@@ -117,13 +102,25 @@ Wow, emotions - except anger - seem to increase the proportion of female actors!
 
 Perfect all emotions are significant predictors! We can see that stronger emotions tend to increase the proportion of female actors in movies. This trend is the strongest for joy and sadness which corresponds with our age analysis: Joy and sadness increase the proportion of female actors in movies and decrease the average age, indicating that female actors tend to be younger than male actors. But there is one exception: Anger 😡. It seems that in movies where anger is a strong emotion the proportion of female actors decreases. So female actors should think twice if they want to put the effort into a casting for a movie where anger is a dominant emotion. On the other hand directors should ask themselves why they are casting like this and if male actors are actually better suited for such movies or if this is a cliché to overcome.
 
-Great, we gained knowledge on the role of emotions on the cast for a movie. We have seen that stronger emotions in general tend to decrease the average age of actors and increase the proportion of female actors indicating that a balanced, younger cast can create stronger emotions. The outlier in the anger emotion shows that there are maybe still some clichés to overcome or that male dominant movies just overall tend to have more anger in them. After having a detailed look at the actor level lets go one step above and look at the cultural level which in our data is represented by languages. Lets jump into the final act of our regression play:
+Great, we gained knowledge on the role of emotions on the cast for a movie. We have seen that stronger emotions in general tend to decrease the average age of actors and increase the proportion of female actors indicating that a balanced, younger cast can create stronger emotions. The outlier in the anger emotion shows that there are maybe still some clichés to overcome or that male dominant movies just overall tend to have more anger in them. After having a detailed look at the actor level we will go one level above and look at the languages in our data. Lets jump into the final act of our regression play:
 
 ## Does the emotional tone of films differ between movies in different languages?
 
-To explore this question we will first have a look which languages are included in our data:
+To explore this question we will first have a look at the top 15 languages in our data:
 
-![language_distribution_pie_chart](https://hackmd.io/_uploads/SyhrzRMByg.png)
+![language_distribution_pie_chart](https://hackmd.io/_uploads/ry-Sv1mBkl.png)
+
+Wow, we really have a variety of languages in our data! Even though we only looked at the top 15 we can see there are a lot more languages, summed up in other. We also can see that English is by far the most used language.
+
+We want to see how emotions vary across languages, so how different languages and associated with them cultures, influence the emotional tone in movies. Again the star in our play is an OLS regression analysis. We need again a variable to compare against. Because English is kind of the normative in the movie industry and by far the most used language in our movies we will used it for comparison. Therefore we analyze how languages that have an significant impact on the emotional tone of a movie influence it compared to English language:
+
+![emotion_language_effect_plot](https://hackmd.io/_uploads/Bkoy6kQrkg.png)
+
+Ok we got results! First of all we can see that language alone does not explain the emotional tone of a movie as indicated by the very low $R^2$-values. But still we see some interesting trends. First of all for fear, joy, neutral and sadness, all significant languages have the same effect direction, indicating that movies in English language differ from most other languages. We see that fear is less dominant in non english films, while sadness is more dominant. It seems that movies in English language are less sad but more frightening than most movies in other languages. In addition we can see some strong differences for some specific languages; The Urdu language for example seem to have more sad movies than the English language or the Telugu language movies with more anger in them compared to English movies.
+
+Ok so we have learned so far what the predominant emotions in films are and how they vary across genres, how they evolved over time and how they influence the cast of a movie and are influenced by different languages. But the heart and soul of cinema is something else: The audience. Movies are made for people, they move us, inspire us and contribute to discussions in society. Thats why emotions are so important in movies - they are supposed to make us cry, frighten us or make us laugh. So we want to see which emotions does the audience want to see? Are there certain patterns or combinations of different emotions that influence the critics of a movie?
+
+For this thriller we first need some additional data. We use the MovieLens dataset (https://grouplens.org/datasets/movielens/32m/) to obtain 32 million ratings for 87.585 movies by 200.948 users. We merge this data with our existing data based on title and year to set the stage for our last dance:
 
 ## Can films be clustered based on their emotional tone, and do these clusters reveal distinct patterns in consumer ratings?
 
